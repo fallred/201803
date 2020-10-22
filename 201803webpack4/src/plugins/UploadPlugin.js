@@ -2,22 +2,22 @@
 const path = require('path');
 const qiniu = require('qiniu');
 class UploadPlugin {
-   constructor(options){
+   constructor(options) {
        this.options = options;
    }
-   apply(compiler){
-      compiler.hooks.afterEmit.tap('UploadPlugin',(compilation)=>{
-        console.log('afterEmit');
-          //先拿到要上传的的资源
-         let assets = compilation.assets;
-         //获取到的是一个待上传的文件组成的数组 ['xxx.js','index.html']
-         let files = Object.keys(assets);
-         console.log('files',files);
-         let promises = files.map(asset=>this.upload(asset,path.resolve(__dirname,'../../dist',asset)));
-        return Promise.all(promises);
-      });
+   apply(compiler) {
+        compiler.hooks.afterEmit.tap('UploadPlugin',(compilation)=>{
+            console.log('afterEmit');
+            //先拿到要上传的的资源
+            let assets = compilation.assets;
+            //获取到的是一个待上传的文件组成的数组 ['xxx.js','index.html']
+            let files = Object.keys(assets);
+            console.log('files',files);
+            let promises = files.map(asset=>this.upload(asset,path.resolve(__dirname,'../../dist',asset)));
+            return Promise.all(promises);
+        });
    }
-   upload(filename,localFile){
+   upload(filename, localFile) {
        console.log('filename,localFile',filename,localFile);
        return new Promise(function(resolve,reject){
             let {bucket='video',domain="img.zhufenpeixun.cn",accessKey='fi5imW04AkxJItuFbbRy1ffH1HIoo17HbWOXw5fV',secretKey='ru__Na4qIor4-V7U4AOJyp2KBUYEw1NWduiJ4Pby'}={};

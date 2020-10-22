@@ -52,6 +52,10 @@ module.exports = {
                         layout: path.resolve(__dirname, 'src/loaders/layout.html')
                     }
                 }
+            },
+            {
+                test: /\.js$/,
+                use: ['log-loader1', 'log-loader2', 'log-loader3']
             }
         ]
     },

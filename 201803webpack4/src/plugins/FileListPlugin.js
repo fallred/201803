@@ -1,20 +1,20 @@
 
-class FileListPlugin{
-    construstor(options){
+class FileListPlugin {
+    construstor(options) {
         this.options = options;
     }
-    apply(compiler){
-        compiler.hooks.emit.tapAsync('FileListPlugin',(compilation,cb)=>{
+    apply(compiler) {
+        compiler.hooks.emit.tapAsync('FileListPlugin', (compilation,cb) => {
             //compilation.assets {bundle.js:{source(){},size(){}}}
             let fileList='';
-            for(let filename in compilation.assets){
-                fileList+=filename+'\r\n';
+            for (let filename in compilation.assets) {
+                fileList += filename + '\r\n123';
             }
-            compilation.assets[this.options&&this.options.filename?this.options.name:'filelist.md']={
-                source(){
+            compilation.assets[this.options && this.options.filename ? this.options.name : 'filelist.md'] = {
+                source() {
                     return fileList;
                 },
-                size(){
+                size() {
                     return Buffer.byteLength(fileList);
                 }
             }

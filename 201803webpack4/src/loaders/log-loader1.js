@@ -7,5 +7,5 @@ let loader = function (source) {
 module.exports = loader;
 loader.pitch = function () {
     console.log('pitch1');
-    
+    // return "1";
 }

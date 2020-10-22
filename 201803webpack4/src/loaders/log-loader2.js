@@ -8,5 +8,5 @@ let loader = function (source, remaindingLoader, leftLoaders, data) {
 module.exports = loader;
 loader.pitch = function () {
     console.log('pitch2');
-    return "2";
+    // return "2";
 }

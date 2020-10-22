@@ -1,19 +1,18 @@
 
-class DonePlugin {
+class Done3Plugin {
     constructor(options) {
         this.options = options;
-       
     }
     apply(compiler) {
-        console.log('开始挂载DonePlugin');
+        console.log('开始挂载Done3Plugin');
        
         compiler.hooks.done.tapAsync('Done3Plugin',(stats,cb)=>{
             setTimeout(()=>{
-                console.log('Done3事件已经触发');
+                console.log('Done3Plugin事件已经触发');
                 cb();
-                console.log((Date.now()- compiler.start)/1000);
+                console.log('gap:' + (Date.now()- compiler.start)/1000);
             },3000)
         });
     }
 }
-module.exports = DonePlugin;
+module.exports = Done3Plugin;
